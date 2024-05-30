@@ -1,5 +1,12 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  signInStart,
+  signInSuccess,
+  signInFailure,
+} from '../redux/user/userSlice';
+import OAuth from '../components/OAuth';
 
 const SignIn = () => {
 
@@ -7,6 +14,7 @@ const SignIn = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleChange = (e) => {
     setFormData({
@@ -28,6 +36,7 @@ const SignIn = () => {
       });
       const data = await res.json();
       console.log(data);
+      
       if (data.success === false) {
         setLoading(false);
         setError(data.message);
@@ -67,6 +76,7 @@ const SignIn = () => {
         >
           {loading ? 'Loading...' : 'Sign Up'}
         </button>
+        <OAuth/>
       </form>
       <div className='flex gap-2 mt-5'>
         <p>Don't Have account?</p>
