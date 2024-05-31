@@ -1,5 +1,4 @@
-const { signup, signin, google } = require('../controllers/auth.controller');
-const User = require('../models/user.model')
+const { signup, signin, google, signOut } = require('../controllers/auth.controller');
 const express = require('express')
 
 const router = express.Router();
@@ -10,5 +9,6 @@ router.get('/add', (req, res) =>{
 router.post('/signup', signup)
 router.post('/signin', signin)
 router.post('/google', google)
+router.get('/signout', signOut)
 
 module.exports = router;
