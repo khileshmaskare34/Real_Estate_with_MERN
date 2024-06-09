@@ -12,9 +12,10 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser());
 
-const mongoURI = process.env.MONGO_URI.replace(/\/\w+$/, '/realstate');
+// const mongoURI = process.env.MONGO_URI.replace(/\/\w+$/, '/realstate');
+// mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
 
-mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(process.env.MONGO_URI)
 .then(()=>{
     console.log("connected to db");
 }).catch((err)=>{
