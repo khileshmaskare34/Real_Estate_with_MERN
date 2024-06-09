@@ -31,6 +31,7 @@ exports.deleteListing = async (req, res, next) => {
 };
 
 exports.updateListing = async (req, res, next) => {
+  console.log("update is working now");
   const listing = await Listing.findById(req.params.id);
   if (!listing) {
     return next(errorHandler(404, 'Listing not found!'));

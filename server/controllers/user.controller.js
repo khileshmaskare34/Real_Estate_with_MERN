@@ -1,3 +1,4 @@
+const Listing = require('../models/listing.model.js');
 const User = require('../models/user.model.js');
 const { errorHandler } = require('../utils/error.js');
 
@@ -50,9 +51,13 @@ exports.deleteUser = async (req, res, next) => {
 };
 
 exports.getUserListings = async (req, res, next) => {
+    console.log("listing route", req.user.id, req.params.id);
+
+
   if (req.user.id === req.params.id) {
     try {
       const listings = await Listing.find({ userRef: req.params.id });
+      console.log("data",listings)
       res.status(200).json(listings);
     } catch (error) {
       next(error);
